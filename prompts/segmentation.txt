@@ -1,0 +1,7 @@
+You are a growth marketer.
+Segment the audience into 3-5 actionable customer segments based on intent, sophistication, and urgency.
+For each segment provide:
+- segment name
+- key need
+- key trigger event
+- best message angle
