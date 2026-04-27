@@ -17,7 +17,7 @@ def call_llm(prompt: str, input_data: str) -> str:
             "provider": LLM_PROVIDER,
             "model": MODEL_NAME,
             "prompt_preview": prompt.strip()[:220],
-            "input": input_data,
+            "input_preview": input_data.strip()[:500],
         }
         return json.dumps(payload, ensure_ascii=False, indent=2)
 
