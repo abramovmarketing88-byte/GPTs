@@ -1,5 +1,12 @@
 # Модульная AI-система генерации лендингов
 
+## TL;DR
+
+- Проект собирает лендинг поэтапно: от анализа аудитории до финального QA.
+- Основной запуск: `python runner.py "ваш продукт"` (добавьте `--show-steps` для промежуточных результатов).
+- Логика шагов находится в `skills/` и `orchestrator/pipeline.py`, prompt-файлы — в `prompts/`.
+- Контекстные инженерные правила и стандарты вынесены в отдельные `.md` модули в корне репозитория.
+
 ## Что делает система
 
 Этот проект превращает набор отдельных prompt-файлов в производственный, расширяемый пайплайн:
@@ -23,6 +30,20 @@
 
 ```text
 project_root/
+├── CONTEXT_ENGINEERING.md
+├── COPYWRITING_ENGINE.md
+├── CRO_AUDIT_ENGINE.md
+├── INTENT_ENGINEERING.md
+├── MODULE_REGISTRY.md
+├── OUTPUT_NORMALIZER.md
+├── PROMPT_CRAFT.md
+├── QA_VALIDATION.md
+├── RESEARCH_ENGINE.md
+├── ROUTING_DIAGNOSTICS.md
+├── SPECIFICATION_ENGINEERING.md
+├── STRUCTURING_ENGINE.md
+├── SUMMARIZATION_ENGINE.md
+├── TECH_DEBUG_ENGINE.md
 ├── prompts/
 │   ├── audience_analysis.txt
 │   ├── segmentation.txt
@@ -50,6 +71,25 @@ project_root/
 └── README.md
 ```
 
+## Контекстные модули
+
+В корне проекта лежат тематические инженерные спецификации (`*_ENGINE.md`) и служебные документы:
+
+- `CONTEXT_ENGINEERING.md` — правила сборки и передачи контекста;
+- `INTENT_ENGINEERING.md` — обработка намерения пользователя;
+- `SPECIFICATION_ENGINEERING.md` — спецификация требований к результату;
+- `STRUCTURING_ENGINE.md` — структура ответов и логика компоновки;
+- `COPYWRITING_ENGINE.md` — генерация копирайтинга;
+- `CRO_AUDIT_ENGINE.md` — аудит конверсии и рекомендации;
+- `RESEARCH_ENGINE.md` — исследовательский контур;
+- `SUMMARIZATION_ENGINE.md` — правила сжатия и резюмирования;
+- `TECH_DEBUG_ENGINE.md` — отладка и техническая диагностика;
+- `OUTPUT_NORMALIZER.md` — нормализация финального вывода;
+- `PROMPT_CRAFT.md` — стандарты разработки prompt-артефактов;
+- `QA_VALIDATION.md` — чек-листы качества;
+- `ROUTING_DIAGNOSTICS.md` — диагностика маршрутизации;
+- `MODULE_REGISTRY.md` — реестр модулей и их ролей.
+
 ## Установка
 
 1. Нужен Python 3.10+.
@@ -58,6 +98,13 @@ project_root/
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+```
+
+Для Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
 ```
 
 3. Дополнительные зависимости не требуются (по умолчанию используется `mock` LLM wrapper).

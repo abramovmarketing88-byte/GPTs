@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авитолог для строителей — заявки на ремонт и стройку</title>
+  <meta name="description" content="Авитолог для строительных компаний: стратегия, упаковка, ведение объявлений и рост целевых заявок с Авито.">
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #0f172a;
+      --muted: #475569;
+      --card: #ffffff;
+      --line: #dbe3ef;
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --ok: #059669;
+      --max: 1140px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    .container { width: min(var(--max), 92%); margin: 0 auto; }
+    .section { padding: 60px 0; }
+    h1, h2, h3 { margin: 0 0 14px; line-height: 1.2; }
+    h1 { font-size: clamp(30px, 4vw, 50px); }
+    h2 { font-size: clamp(24px, 3vw, 36px); }
+    p { margin: 0 0 12px; color: var(--muted); }
+    .hero {
+      padding: 72px 0 56px;
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #eef2ff 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-grid, .grid-3, .grid-2 { display: grid; gap: 16px; }
+    .hero-grid { grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .list { margin: 0; padding-left: 18px; color: var(--muted); }
+    .list li { margin-bottom: 8px; }
+    .chip {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 13px;
+      border: 1px solid #bfdbfe;
+    }
+    .btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .btn {
+      text-decoration: none;
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover { background: var(--brand-dark); }
+    .btn-ghost { border-color: #93c5fd; color: #1e40af; }
+    .metric strong { display: block; font-size: 26px; color: var(--text); }
+    .metric span { color: var(--muted); font-size: 13px; }
+    .price { font-size: 30px; font-weight: 700; color: var(--text); margin: 8px 0 12px; }
+    .ok { color: var(--ok); font-weight: 700; }
+    .faq details {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .faq summary { cursor: pointer; font-weight: 700; }
+    form { display: grid; gap: 10px; }
+    input, textarea {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 12px;
+      font: inherit;
+      width: 100%;
+      color: var(--text);
+      background: #fff;
+    }
+    textarea { min-height: 110px; resize: vertical; }
+    .foot {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 20px 0 30px;
+      font-size: 14px;
+    }
+    @media (max-width: 900px) {
+      .hero-grid, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .section { padding: 46px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="chip">Pipeline V2: audience → segmentation → pains → insights → structure → copy → review</span>
+        <h1>Авитолог для строителей: больше целевых заявок, меньше пустых обращений</h1>
+        <p>Помогаю строительным компаниям и бригадам стабильно получать заявки с Авито: от упаковки оффера до системной оптимизации объявлений.</p>
+        <ul class="list">
+          <li>Подход под строительную нишу: ремонт, отделка, дома, фасады, кровля, инженерные сети.</li>
+          <li>Работа по цифрам: отклики, стоимость лида, конверсия в замер и договор.</li>
+          <li>Понятные еженедельные отчеты и список точек роста.</li>
+        </ul>
+        <div class="btns">
+          <a href="#lead" class="btn btn-primary">Получить разбор аккаунта</a>
+          <a href="#plans" class="btn btn-ghost">Выбрать тариф</a>
+        </div>
+      </div>
+      <aside class="card">
+        <h3>Ожидаемый эффект за 2-4 недели</h3>
+        <div class="grid-3">
+          <div class="card metric"><strong>+CTR</strong><span>через новые заголовки и визуал</span></div>
+          <div class="card metric"><strong>-CPL</strong><span>через чистку семантики и офферов</span></div>
+          <div class="card metric"><strong>+CR</strong><span>из чата в замер</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2>Сегменты, с которыми работаю</h2>
+      <div class="grid-3">
+        <article class="card"><h3>Частные бригады</h3><p>Нужно закрывать календарь объектами без демпинга.</p></article>
+        <article class="card"><h3>Ремонтные компании</h3><p>Важен поток заявок на средний и высокий чек.</p></article>
+        <article class="card"><h3>Узкие подрядчики</h3><p>Фасады, кровля, электрика, сантехника, фундаментные работы.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Что мешает получать нормальные лиды</h2>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Типовые боли</h3>
+          <ul class="list">
+            <li>Объявления похожи на всех, слабая дифференциация.</li>
+            <li>Нет сегментации под разные услуги и бюджеты.</li>
+            <li>Сливается бюджет в поднятия без контроля эффективности.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Как исправляем</h3>
+          <ul class="list">
+            <li><span class="ok">1.</span> Делаем отдельные офферы под каждое направление.</li>
+            <li><span class="ok">2.</span> Тестируем заголовки, превью и УТП по неделям.</li>
+            <li><span class="ok">3.</span> Дорабатываем ответы в чате до назначения замера.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" class="section">
+    <div class="container">
+      <h2>Тарифы сопровождения</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Базовый</h3>
+          <p class="price">25 000 ₽</p>
+          <ul class="list"><li>До 10 объявлений</li><li>Базовая аналитика</li><li>Поддержка в чате</li></ul>
+        </article>
+        <article class="card">
+          <h3>Оптимальный</h3>
+          <p class="price">45 000 ₽</p>
+          <ul class="list"><li>До 25 объявлений</li><li>A/B тесты</li><li>Еженедельная стратегия</li></ul>
+        </article>
+        <article class="card">
+          <h3>Масштаб</h3>
+          <p class="price">от 70 000 ₽</p>
+          <ul class="list"><li>Полное ведение</li><li>Несколько регионов/услуг</li><li>Приоритетный трекинг</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq">
+    <div class="container">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Когда будет первый результат?</summary>
+        <p>Обычно первые качественные отклики видны в течение 3-7 дней после запуска обновленных объявлений.</p>
+      </details>
+      <details>
+        <summary>Можно без долгого договора?</summary>
+        <p>Да, можно начать с короткого пилота 1 месяц и принять решение по цифрам.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="lead" class="section">
+    <div class="container grid-2">
+      <div>
+        <h2>Оставьте заявку на аудит Авито</h2>
+        <p>Проведу разбор вашего профиля и дам конкретный план роста заявок для строительной ниши.</p>
+      </div>
+      <form class="card" onsubmit="event.preventDefault(); alert('Спасибо! Заявка принята.');">
+        <input type="text" placeholder="Имя" required>
+        <input type="tel" placeholder="Телефон / Telegram / WhatsApp" required>
+        <input type="text" placeholder="Город и специализация">
+        <textarea placeholder="Что хотите улучшить в заявках?"></textarea>
+        <button class="btn btn-primary" type="submit">Получить аудит</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="container">Авитолог для строителей · Лендинг версия V2</div>
+  </footer>
+</body>
+</html>

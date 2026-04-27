@@ -32,10 +32,14 @@ SKILL_HANDLERS: Dict[str, Callable[[str], str]] = {
 
 
 def _build_step_input(step_name: str, pipeline_input: str, outputs: Dict[str, str]) -> str:
+    previous_step_name = list(outputs.keys())[-1]
     context: Dict[str, Any] = {
         "pipeline_input": pipeline_input,
         "step": step_name,
-        "previous_steps": outputs,
+        "previous_step": {
+            "name": previous_step_name,
+            "output": outputs[previous_step_name],
+        },
     }
     return to_json(context)
 
@@ -44,6 +48,7 @@ def run_pipeline(input_data: str) -> PipelineResult:
     outputs: Dict[str, str] = {}
 
     for step_name, handler in SKILL_HANDLERS.items():
+        print(f"=== STEP: {step_name.upper()} ===")
         step_input = input_data if step_name == "audience" else _build_step_input(step_name, input_data, outputs)
         outputs[step_name] = handler(step_input)
 

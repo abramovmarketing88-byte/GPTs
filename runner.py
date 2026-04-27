@@ -1,9 +1,21 @@
 from __future__ import annotations
 
 import argparse
+import sys
 
 from orchestrator.pipeline import run_pipeline
 from skills.registry import analyze_prompt_roles
+
+
+def configure_utf8_stdio() -> None:
+    """Force UTF-8 stdout/stderr in Windows terminals when possible."""
+    for stream_name in ("stdout", "stderr"):
+        stream = getattr(sys, stream_name, None)
+        if stream is None:
+            continue
+        reconfigure = getattr(stream, "reconfigure", None)
+        if callable(reconfigure):
+            reconfigure(encoding="utf-8")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -25,6 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
+    configure_utf8_stdio()
     parser = build_parser()
     args = parser.parse_args()
 
