@@ -1,16 +1,16 @@
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
-from typing import Dict
+from typing import Any, Callable, Dict
 
 from skills.audience import analyze_audience
-from skills.segmentation import segment_audience
-from skills.pains import analyze_pain_points
-from skills.insights import synthesize_insights
-from skills.structure import build_landing_structure
 from skills.copywriting import write_landing_copy
+from skills.insights import synthesize_insights
+from skills.pains import analyze_pain_points
 from skills.review import review_copy
+from skills.segmentation import segment_audience
+from skills.structure import build_landing_structure
+from skills.common import to_json
 
 
 @dataclass
@@ -20,86 +20,35 @@ class PipelineResult:
     final_output: str
 
 
-def run_pipeline(input_data: str) -> PipelineResult:
-    audience_output = analyze_audience(input_data)
+SKILL_HANDLERS: Dict[str, Callable[[str], str]] = {
+    "audience": analyze_audience,
+    "segmentation": segment_audience,
+    "pains": analyze_pain_points,
+    "insights": synthesize_insights,
+    "structure": build_landing_structure,
+    "copy": write_landing_copy,
+    "review": review_copy,
+}
 
-    segmentation_input = json.dumps(
-        {"product_input": input_data, "audience": audience_output},
-        ensure_ascii=False,
-        indent=2,
-    )
-    segmentation_output = segment_audience(segmentation_input)
 
-    pains_input = json.dumps(
-        {
-            "product_input": input_data,
-            "audience": audience_output,
-            "segments": segmentation_output,
-        },
-        ensure_ascii=False,
-        indent=2,
-    )
-    pains_output = analyze_pain_points(pains_input)
-
-    insights_input = json.dumps(
-        {
-            "audience": audience_output,
-            "segments": segmentation_output,
-            "pain_points": pains_output,
-        },
-        ensure_ascii=False,
-        indent=2,
-    )
-    insights_output = synthesize_insights(insights_input)
-
-    structure_input = json.dumps(
-        {
-            "product_input": input_data,
-            "insights": insights_output,
-        },
-        ensure_ascii=False,
-        indent=2,
-    )
-    structure_output = build_landing_structure(structure_input)
-
-    copy_input = json.dumps(
-        {
-            "product_input": input_data,
-            "insights": insights_output,
-            "structure": structure_output,
-        },
-        ensure_ascii=False,
-        indent=2,
-    )
-    copy_output = write_landing_copy(copy_input)
-
-    review_input = json.dumps(
-        {
-            "copy_draft": copy_output,
-            "strategy_inputs": {
-                "audience": audience_output,
-                "segments": segmentation_output,
-                "pain_points": pains_output,
-                "insights": insights_output,
-            },
-        },
-        ensure_ascii=False,
-        indent=2,
-    )
-    reviewed_output = review_copy(review_input)
-
-    steps = {
-        "audience": audience_output,
-        "segmentation": segmentation_output,
-        "pains": pains_output,
-        "insights": insights_output,
-        "structure": structure_output,
-        "copy": copy_output,
-        "review": reviewed_output,
+def _build_step_input(step_name: str, pipeline_input: str, outputs: Dict[str, str]) -> str:
+    context: Dict[str, Any] = {
+        "pipeline_input": pipeline_input,
+        "step": step_name,
+        "previous_steps": outputs,
     }
+    return to_json(context)
+
+
+def run_pipeline(input_data: str) -> PipelineResult:
+    outputs: Dict[str, str] = {}
+
+    for step_name, handler in SKILL_HANDLERS.items():
+        step_input = input_data if step_name == "audience" else _build_step_input(step_name, input_data, outputs)
+        outputs[step_name] = handler(step_input)
 
     return PipelineResult(
         input_data=input_data,
-        steps=steps,
-        final_output=reviewed_output,
+        steps=outputs,
+        final_output=outputs["review"],
     )
